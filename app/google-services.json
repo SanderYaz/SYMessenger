@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "369370462892",
+    "firebase_url": "https://symessage-app.firebaseio.com",
+    "project_id": "symessage-app",
+    "storage_bucket": "symessage-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369370462892:android:cb98368923dfee013efd09",
+        "android_client_info": {
+          "package_name": "com.example.symessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369370462892-ls8knu9bjiqbut1spl80g9ok88sthtva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.symessenger",
+            "certificate_hash": "993f624b2265b5fdb18f8e0a5e07f505d2b49eac"
+          }
+        },
+        {
+          "client_id": "369370462892-3qh19o7g7afprhlghqj6h4hc1h00ers2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuIiOwa9dfApbPpsNhUYaxMavIqWrR_k8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369370462892-3qh19o7g7afprhlghqj6h4hc1h00ers2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
