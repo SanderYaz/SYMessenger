@@ -43,18 +43,24 @@
                 android:id="@+id/username"
                 android:textSize="18sp"
                 android:layout_marginBottom="20dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
                 android:layout_below="@id/username"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
-                android:id="@+id/Email"
-                android:textSize="18sp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:max="10"
+                android:padding="4dip" >
+            </ProgressBar>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_below="@id/progressBar1"
+                android:layout_height="wrap_content"
+                android:text="Update" />
 
         </RelativeLayout>
 

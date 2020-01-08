@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,15 +47,16 @@ public class ProfileFragment extends Fragment {
 
     CircleImageView image_profile;
     TextView username;
-    TextView email;
 
     DatabaseReference reference;
     FirebaseUser fuser;
+    Button btn;
 
     StorageReference storageReference;
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
     private StorageTask uploadTask;
+    private ProgressBar bar;
 
 
     @Override
@@ -64,7 +67,16 @@ public class ProfileFragment extends Fragment {
 
         image_profile = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
-        email = view.findViewById(R.id.Email);
+        super.onCreate(savedInstanceState);
+        bar = (ProgressBar) view.findViewById(R.id.progressBar1);
+        btn =  view.findViewById(R.id.button1);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startProgress(view);
+            }
+        });
 
 
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
@@ -99,7 +111,26 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+    public void startProgress(View view) {
+        bar.setProgress(0);
+        new Thread(new Task2()).start();
+    }
+    public class Task2 implements Runnable {
+        @Override
+        public void run() {
+            for (int i = 0; i <= 10; i++) {
+                final int value = i;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                bar.setProgress(value);
 
+            }
+        }
+
+    }
     private void openImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
