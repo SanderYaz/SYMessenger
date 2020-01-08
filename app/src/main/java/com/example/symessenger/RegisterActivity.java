@@ -1,13 +1,14 @@
 package com.example.symessenger;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +23,8 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
     MaterialEditText username2, email, password;
     Button btn_register;
-
+    AnimationDrawable anim;
+    AssetManager am;
     FirebaseAuth auth;
     DatabaseReference reference;
 
@@ -30,11 +32,13 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        am = this.getApplicationContext().getAssets();
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        anim = (AnimationDrawable) container.getBackground();
+        anim.setEnterFadeDuration(100);
+        anim.setExitFadeDuration(1000);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Register");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         username2 = findViewById(R.id.username2);
         email = findViewById(R.id.email);
@@ -97,5 +101,17 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    protected void onResume() {
+        super.onResume();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning())
+            anim.stop();
     }
 }

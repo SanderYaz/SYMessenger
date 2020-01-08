@@ -1,16 +1,18 @@
 package com.example.symessenger;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class LoginActivity extends AppCompatActivity {
-
+    AnimationDrawable anim;
+    AssetManager am;
     MaterialEditText email, password;
     Button btn_login;
 
@@ -30,11 +33,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        am = this.getApplicationContext().getAssets();
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        anim = (AnimationDrawable) container.getBackground();
+        anim.setEnterFadeDuration(100);
+        anim.setExitFadeDuration(1000);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Login");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth = FirebaseAuth.getInstance();
 
@@ -77,5 +81,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    protected void onResume() {
+        super.onResume();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning())
+            anim.stop();
     }
 }
