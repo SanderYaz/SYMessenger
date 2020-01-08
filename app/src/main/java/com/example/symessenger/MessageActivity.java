@@ -2,10 +2,13 @@ package com.example.symessenger;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +60,9 @@ public class MessageActivity extends AppCompatActivity {
     MessageAdapter messageAdapter;
     List<Chat> mchat;
 
+    AnimationDrawable anim;
+    AssetManager am;
+
     RecyclerView recyclerView;
 
     Intent intent;
@@ -73,6 +79,11 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        am = this.getApplicationContext().getAssets();
+        RecyclerView recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
+        anim = (AnimationDrawable) recycler_view    .getBackground();
+        anim.setEnterFadeDuration(100);
+        anim.setExitFadeDuration(1000);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -309,6 +320,8 @@ public class MessageActivity extends AppCompatActivity {
         super.onResume();
         status("online");
         currentUser(userid);
+        if (anim != null && !anim.isRunning())
+            anim.start();
     }
 
     @Override
@@ -317,5 +330,7 @@ public class MessageActivity extends AppCompatActivity {
         reference.removeEventListener(seenListener);
         status("offline");
         currentUser("none");
+        if (anim != null && anim.isRunning())
+            anim.stop();
     }
 }

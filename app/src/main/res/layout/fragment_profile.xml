@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
+    android:background="@drawable/messagecolor1"
     tools:context=".Fragments.ProfileFragment">
 
     <androidx.cardview.widget.CardView
@@ -40,6 +41,18 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:id="@+id/username"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_below="@id/username"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:id="@+id/Email"
                 android:textSize="18sp"
                 android:layout_marginBottom="20dp"/>
 

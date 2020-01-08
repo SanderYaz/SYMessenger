@@ -44,6 +44,7 @@
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
         android:layout_below="@id/bar_layout"
+        android:background="@drawable/fastanim"
         android:layout_above="@id/bottom"/>
 
     <RelativeLayout
